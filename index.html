@@ -23,7 +23,7 @@
     // 🧠 Example of usage:
     // buildPeter() // should return { firstName: "Peter", lastName: "Pan", age: 12 }
     function buildPeter() {
-
+      return { firstName: "Peter", lastName: "Pan", age: 12 }
     }
 
     // 👉 CHALLENGE 2
@@ -31,8 +31,16 @@
     // 🧠 Example of usage:
     // buildUser("John", "Smith", 30) // should return { firstName: "John", lastName: "Smith", age: 30 }
     function buildUser(firstName, lastName, age) {
-
+      const user = {
+        firstName: firstName,
+        lastName: lastName,
+        age: age
+      };
+      return user;     
     }
+
+    const user1 = buildUser("John", "Smith", 30)
+
 
     // 👉 CHALLENGE 3
     // 🧠 The function deletePrice takes an object as its argument and deletes its "price" property if it exists.
@@ -42,9 +50,18 @@
     // 🧠 Examples of usage:
     // deletePrice({ item: "Tesla Model 3", price: 40000 }) // should return { item: "Tesla Model 3" }
     // deletePrice({ item: "Kobo Libra 2" }) // should return { item: "Kobo Libra 2", priceless: true }
-    function deletePrice() {
+    function deletePrice(item) {
+      if ("price" in item) {
+        delete item.price;
+      } else {
+        item.priceless = true;
+      }
+
+      return item;
 
     }
+    const item1 = { item: "Tesla Model 3", price: 40000 };
+    const item2 = { item: "Kobo Libra 2"};
 
     // 👉 CHALLENGE 4
     // 🧠 The function evenList takes an array as its argument and returns true if the array has an even number of elements, false otherwise.
@@ -53,6 +70,7 @@
     // evenList(['a']) // should return false
     // evenList(['a', 'b']) // should return true
     function evenList(arr) {
+      return arr.length % 2 === 0;
 
     }
 
@@ -62,7 +80,12 @@
     // 🧠 Examples of usage:
     // firstOrLast(['a', 'b'], true) // should return 'a'
     // firstOrLast(['a', 'b'], false) // should return 'b'
-    function firstOrLast() {
+    function firstOrLast(arr, returnFirst) {
+      if (returnFirst) {
+        return arr[0];
+      } else {
+        return arr[arr.length - 1];
+      }
 
     }
 
@@ -72,7 +95,9 @@
     // 🧠 Examples of usage:
     // pushElement([], 1) // should return [1]
     // pushElement(['a', 'b'], 'c') // should return ['a', 'b', 'c']
-    function pushElement() {
+    function pushElement(arr, value) {
+      arr.push(value);
+      return arr;
 
     }
 
@@ -88,7 +113,16 @@
     // 🧠 At each iteration of the loop, if the current character is not "x", then add it to the end of the result array.
     // 🧠 You can merge the result array back into a string by using join. Example: ["f", "o", "o"].join("") yields "foo"
     // 🧠 Do not forget to return your rejoined string!
-    function stripX() {
+    function stripX(string) {
+      const charArray = string.split("");
+      const result = [];
+      for (const char of charArray) {
+        if (char.toLowerCase() !== 'x') {
+          result.push(char);
+        }
+      }
+      const filteredString = result.join("");
+      return filteredString;
 
     }
 
@@ -101,7 +135,16 @@
     // ❗ Important Notes:
     // 🧠 Try to solve this problem without looking at how you solved the previous one.
     // 🧠 If you need to look, do not copy & paste code. Take a peek and then work from memory!
-    function stripChar() {
+    function stripChar(string, charToRemove) {
+      const result = [];
+      for (const char of string) {
+        if (char.toLowerCase() !== charToRemove.toLowerCase()) {
+          result.push(char);
+        }
+      }
+
+      const filteredString = result.join("");
+      return filteredString;
 
     }
 
@@ -114,7 +157,15 @@
     // getProps({ lastName: "Smith", age: 35 }) // should return ["lastName"]
     // getProps({ firstName: "Jane", married: false }) // should return ["firstName"]
     // getProps({ name: "Bamby", favFood: "flowers" }) // should return ["name", "favFood"]
-    function getProps() {
+    function getProps(object) {
+      const filteredProps = [];
+      for (const propName in object) {
+        if (propName !== "age" && propName !== "married") {
+          filteredProps.push(propName);
+        }
+      }
+
+      return filteredProps;
 
     }
 
